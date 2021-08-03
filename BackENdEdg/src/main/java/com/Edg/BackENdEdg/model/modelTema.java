@@ -84,13 +84,7 @@ public class modelTema {
 		this.cidade = cidade;
 	}
 
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
-	}
+	
 	
 	
 	
