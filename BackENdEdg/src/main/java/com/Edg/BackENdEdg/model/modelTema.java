@@ -1,5 +1,6 @@
 package com.Edg.BackENdEdg.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -22,28 +24,35 @@ public class modelTema {
 	@GeneratedValue(strategy= GenerationType.IDENTITY )
 	private Long id;
 	
-	@NotNull
+	@NotBlank
 	@Size(min = 1, max=50, message = "limite de 50 caracteres")
 	private String area;
 	
-	@NotNull
+	@NotBlank
 	@Size(min = 1, max=50, message = "limite de 50 caracteres")
 	private String tipoDeAcao;
 	
-	@NotNull
+	@NotBlank
 	@Size(min = 1, max=50, message = "limite de 50 caracteres")
 	private String publico;
 	
-	@NotNull
+	@NotBlank
 	@Size(min = 1, max=50, message = "limite de 50 caracteres")
 	private String cidade;
 	
-	@NotNull
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date data;
+	@NotBlank
+	private LocalDate data;
 
 	
-	   //metodos
+	   public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+
+	//metodos
 	public Long getId() {
 		return id;
 	}
