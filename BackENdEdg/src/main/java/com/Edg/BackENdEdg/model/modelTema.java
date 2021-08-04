@@ -2,17 +2,22 @@ package com.Edg.BackENdEdg.model;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity              
 @Table(name = "tb_tema")
@@ -22,7 +27,7 @@ public class modelTema {
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY )
-	private Long id;
+	private long id;
 	
 	@NotBlank
 	@Size(min = 1, max=50, message = "limite de 50 caracteres")
@@ -42,9 +47,22 @@ public class modelTema {
 	
 	@NotBlank
 	private LocalDate data;
+	
+	@OneToMany (mappedBy= "tema",cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("tema")
+	private List<Postagem> postagem;
+
 
 	
-	   public LocalDate getData() {
+	   public List<Postagem> getPostagem() {
+		return postagem;
+	}
+
+	public void setPostagem(List<Postagem> postagem) {
+		this.postagem = postagem;
+	}
+
+	public LocalDate getData() {
 		return data;
 	}
 

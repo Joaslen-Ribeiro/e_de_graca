@@ -21,7 +21,7 @@ import com.Edg.BackENdEdg.repository.TemaRepository;
 
 @RestController
 @RequestMapping("/tema")
-@CrossOrigin("*")
+@CrossOrigin(value="*")
 public class TemaController {
 
 	@Autowired
@@ -41,9 +41,9 @@ public class TemaController {
 		return ResponseEntity.ok(repository.findAllByAreaContainingIgnoreCase(area));
 	}
 	
-	@GetMapping("/tipoDeAcao/{tipoDeAcao}")
-	public ResponseEntity <List<modelTema>> getByTipoDeAcao(@PathVariable String tipoDeAcao){
-		return ResponseEntity.ok(repository.findAllByTipoDeAcaoContainingIgnoreCase(tipoDeAcao));
+   @GetMapping("/tipoDeAcao/{tipoDeAcao}")
+	public ResponseEntity <List<modelTema>> getByTipoDeAcao(@PathVariable String tipodeacao){
+		return ResponseEntity.ok(repository.findAllByTipoDeAcaoContainingIgnoreCase(tipodeacao));
 	}
 	@GetMapping("/publico/{publico}")
 	public ResponseEntity <List<modelTema>> getByPublico(@PathVariable String publico){
@@ -53,7 +53,7 @@ public class TemaController {
 	public ResponseEntity <List<modelTema>> getByCidade(@PathVariable String cidade){
 		return ResponseEntity.ok(repository.findAllByCidadeContainingIgnoreCase(cidade));
 		}
-	@GetMapping("/area/{area}")
+	@GetMapping("/data/{data}")
 	public ResponseEntity <List<modelTema>> getByData(@PathVariable LocalDate data){
 		return ResponseEntity.ok(repository.findAllByData(data));
 		}
@@ -64,8 +64,8 @@ public class TemaController {
 	}
 	@PutMapping
 	public ResponseEntity <modelTema> put (@RequestBody modelTema put){
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(put));
-	}
+		return ResponseEntity.ok(repository.save(put));
+				}
 	@DeleteMapping("/{id}")
 	public String delete(@PathVariable long id) {
 		repository.deleteById(id);
