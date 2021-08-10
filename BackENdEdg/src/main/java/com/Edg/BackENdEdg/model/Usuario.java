@@ -30,7 +30,7 @@ public class Usuario {
 	private String email;
 	
 	@NotBlank
-	@Size(min=8, max=8, message = "senha de 8 caracteres")
+	@Size(min=8, message = "senha de no minimo 8 caracteres")
 	private String senha;
 	
 	private boolean empresa;

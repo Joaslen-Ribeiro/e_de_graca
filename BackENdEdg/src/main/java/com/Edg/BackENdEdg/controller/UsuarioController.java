@@ -1,6 +1,7 @@
 package com.Edg.BackENdEdg.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,13 +17,62 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Edg.BackENdEdg.model.Usuario;
+import com.Edg.BackENdEdg.model.UsuarioLogin;
 import com.Edg.BackENdEdg.repository.UsuarioRepository;
+import com.Edg.BackENdEdg.service.UsuarioService;
 
 @RestController
 @RequestMapping("/usuario")
 @CrossOrigin("*")
 public class UsuarioController {
+	
 	@Autowired
+	private UsuarioService usuarioService;
+	
+	@PostMapping("/logar")
+	public ResponseEntity<UsuarioLogin>loginUsuario(@RequestBody Optional<UsuarioLogin> usuarioLogin){
+		return usuarioService.loginUsuario(usuarioLogin)
+				.map(resp-> ResponseEntity.ok(resp)).orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
+	}
+	@PostMapping ("/cadastrar")
+	public ResponseEntity<Usuario> postUsuario(@RequestBody Usuario usuario){
+		return usuarioService.cadastrarUsuario(usuario)
+				.map(resp-> ResponseEntity.status(HttpStatus.CREATED).body(resp))
+				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+	}
+	
+	@PutMapping("/alterar")
+	public ResponseEntity<Usuario> putUsuario(@RequestBody Usuario usuario){
+		return usuarioService.atualizarUsuario(usuario)
+				.map(resp-> ResponseEntity.status(HttpStatus.OK).body(resp))
+				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+	}
+	// manter os metodos do controller original?
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*@Autowired
 	private UsuarioRepository repository;
 
 	@GetMapping
@@ -51,7 +101,7 @@ public class UsuarioController {
 		return "Deletado";
 	}
 	
-
+*/
 
 
 
