@@ -41,7 +41,7 @@ public class Postagem {
 	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
-	private modelTema tema;
+	private Tema tema;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
@@ -64,11 +64,11 @@ public class Postagem {
 		this.usuario = usuario;
 	}
 
-	public modelTema getTema() {
+	public Tema getTema() {
 		return tema;
 	}
 
-	public void setTema(modelTema tema) {
+	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
 

@@ -27,8 +27,12 @@ public class UsuarioService {
 	public Optional<Usuario> cadastrarUsuario (Usuario usuario){
 		
 		if(usuarioRepository.findByEmail(usuario.getEmail()).isPresent())
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,  "Email ja cadastrado", null);
+			return Optional.ofNullable(null);
+			
+			
+			//throw new ResponseStatusException(HttpStatus.BAD_REQUEST,  "Email ja cadastrado", null);
 		
+			
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		
 		String senhaEncoder = encoder.encode(usuario.getSenha());
@@ -50,7 +54,9 @@ public class UsuarioService {
 			
 			return Optional.of(usuarioRepository.save(usuario));
 		}else {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario não encontrado", null);
+			return Optional.ofNullable(null);
+			
+		//	throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuario não encontrado", null);
 			
 		}
 		
@@ -67,7 +73,7 @@ public class UsuarioService {
 				// gerar o token-- 
 				String auth = usuarioLogin.get().getEmail() + ":" + usuarioLogin.get().getSenha();
 				byte[] encodeAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
-				String authHeader = "BASIC " + new String (encodeAuth);// isso é o token
+				String authHeader = "Basic " + new String (encodeAuth);// isso é o token
 				
 				usuarioLogin.get().setId(usuario.get().getId());
 				usuarioLogin.get().setNome(usuario.get().getNome());
@@ -78,8 +84,9 @@ public class UsuarioService {
 				return usuarioLogin;
 			}
 		}
+		return Optional.ofNullable(null);
 		
-		throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "E-mail ou senha inválidos", null);
+		//throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "E-mail ou senha inválidos", null);
 			}
 		
 				

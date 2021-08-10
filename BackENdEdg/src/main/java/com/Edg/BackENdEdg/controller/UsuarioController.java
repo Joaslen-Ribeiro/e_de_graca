@@ -47,31 +47,7 @@ public class UsuarioController {
 				.map(resp-> ResponseEntity.status(HttpStatus.OK).body(resp))
 				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}
-	// manter os metodos do controller original?
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	/*@Autowired
 	private UsuarioRepository repository;
 
@@ -87,25 +63,12 @@ public class UsuarioController {
 	public ResponseEntity <List<Usuario>> getByNome(@PathVariable String nome){
 		return ResponseEntity.ok(repository.findAllByNomeContainingIgnoreCase(nome));
 	}
-	@PostMapping
-	public ResponseEntity<Usuario> post(@RequestBody Usuario post){
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(post));
-	}
-	@PutMapping
-	public ResponseEntity<Usuario> put(@RequestBody Usuario put){
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(put));
-	}
+	
 	@DeleteMapping("/{id}")
 	public String delete(@PathVariable long id) {
 		repository.deleteById(id);
 		return "Deletado";
 	}
-	
-*/
-
-
-
-
-
+	*/
 
 }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.Edg.BackENdEdg.model.modelTema;
+import com.Edg.BackENdEdg.model.Tema;
 import com.Edg.BackENdEdg.repository.TemaRepository;
 
 @RestController
@@ -28,42 +28,42 @@ public class TemaController {
 	private TemaRepository repository;
 	
 	@GetMapping
-	public ResponseEntity <List<modelTema>> getAll(){
+	public ResponseEntity <List<Tema>> getAll(){
 		return ResponseEntity.ok(repository.findAll());
 	}
 	@GetMapping("/{id}")
-	public ResponseEntity <modelTema> getById(@PathVariable long id){
+	public ResponseEntity <Tema> getById(@PathVariable long id){
 		return repository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
 	}
 	
 	@GetMapping("/area/{area}")
-	public ResponseEntity <List<modelTema>> getByArea(@PathVariable String area){
+	public ResponseEntity <List<Tema>> getByArea(@PathVariable String area){
 		return ResponseEntity.ok(repository.findAllByAreaContainingIgnoreCase(area));
 	}
 	
    @GetMapping("/tipoDeAcao/{tipoDeAcao}")
-	public ResponseEntity <List<modelTema>> getByTipoDeAcao(@PathVariable String tipodeacao){
+	public ResponseEntity <List<Tema>> getByTipoDeAcao(@PathVariable String tipodeacao){
 		return ResponseEntity.ok(repository.findAllByTipoDeAcaoContainingIgnoreCase(tipodeacao));
 	}
 	@GetMapping("/publico/{publico}")
-	public ResponseEntity <List<modelTema>> getByPublico(@PathVariable String publico){
+	public ResponseEntity <List<Tema>> getByPublico(@PathVariable String publico){
 		return ResponseEntity.ok(repository.findAllByPublicoContainingIgnoreCase(publico));
 		}
 	@GetMapping("/cidade/{cidade}")
-	public ResponseEntity <List<modelTema>> getByCidade(@PathVariable String cidade){
+	public ResponseEntity <List<Tema>> getByCidade(@PathVariable String cidade){
 		return ResponseEntity.ok(repository.findAllByCidadeContainingIgnoreCase(cidade));
 		}
 	@GetMapping("/data/{data}")
-	public ResponseEntity <List<modelTema>> getByData(@PathVariable LocalDate data){
+	public ResponseEntity <List<Tema>> getByData(@PathVariable LocalDate data){
 		return ResponseEntity.ok(repository.findAllByData(data));
 		}
 	
 	@PostMapping
-	public ResponseEntity <modelTema> post(@RequestBody modelTema post ){
+	public ResponseEntity <Tema> post(@RequestBody Tema post ){
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(post));
 	}
 	@PutMapping
-	public ResponseEntity <modelTema> put (@RequestBody modelTema put){
+	public ResponseEntity <Tema> put (@RequestBody Tema put){
 		return ResponseEntity.ok(repository.save(put));
 				}
 	@DeleteMapping("/{id}")
