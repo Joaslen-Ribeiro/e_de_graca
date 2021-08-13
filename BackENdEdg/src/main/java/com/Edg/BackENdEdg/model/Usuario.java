@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -27,6 +28,7 @@ public class Usuario {
 	
 	@NotBlank
 	@Size(min=1, max=50, message = "limite de 50 caractere")
+	@Email
 	private String email;
 	
 	@NotBlank

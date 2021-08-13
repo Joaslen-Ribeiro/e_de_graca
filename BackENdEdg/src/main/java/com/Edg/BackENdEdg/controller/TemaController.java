@@ -41,7 +41,7 @@ public class TemaController {
 		return ResponseEntity.ok(repository.findAllByAreaContainingIgnoreCase(area));
 	}
 	
-   @GetMapping("/tipoDeAcao/{tipoDeAcao}")
+   @GetMapping("/tipodeacao/{tipodeacao}")
 	public ResponseEntity <List<Tema>> getByTipoDeAcao(@PathVariable String tipodeacao){
 		return ResponseEntity.ok(repository.findAllByTipoDeAcaoContainingIgnoreCase(tipodeacao));
 	}
