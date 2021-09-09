@@ -27,7 +27,6 @@ public class Usuario {
 	private String nome;
 	
 	@NotBlank
-	@Size(min=1, max=50, message = "limite de 50 caractere")
 	@Email
 	private String email;
 	

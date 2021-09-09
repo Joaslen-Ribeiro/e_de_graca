@@ -19,8 +19,8 @@ import com.Edg.BackENdEdg.model.Postagem;
 import com.Edg.BackENdEdg.repository.PostagemRepository;
 
 @RestController
-@RequestMapping("/postagem")
-@CrossOrigin("*")
+@RequestMapping("/postagens")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class Postagemcontroller {
 
 	@Autowired
@@ -32,7 +32,8 @@ public class Postagemcontroller {
 	}
 	@GetMapping("/{id}")
 	public ResponseEntity <Postagem> getById(@PathVariable long id){
-		return repository.findById(id).map(resp-> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
+		return repository.findById(id).map(resp-> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.notFound().build());
 	}
 	@GetMapping("/titulo/{titulo}")
 	public ResponseEntity <List<Postagem>> getByTitulo(@PathVariable String titulo ){
